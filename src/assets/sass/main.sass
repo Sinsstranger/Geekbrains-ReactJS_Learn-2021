@@ -8,10 +8,55 @@ body, #root
 #root
 	display: grid
 	grid-template: minmax(2em, auto) 1fr minmax(2em, auto)/1fr
+
 .header, .footer
 	background: rgba(4, 28, 47, 0.6)
 	color: aliceblue
 	display: inherit
 	align-items: center
+
 .main
 	padding: 1em 0
+	display: grid
+	grid-template: 1fr auto/1fr
+
+.message-list
+	display: inherit
+	grid-auto-rows: fit-content(40px)
+	gap: 1rem
+	align-items: start
+
+	&__item
+		margin-bottom: 0
+		display: inherit
+
+.chat-message
+	padding: 0 1em
+	grid-template: 1fr/minmax(40px, auto) 1fr
+	grid-column-gap: 1em
+
+	&__image
+		border-radius: 50%
+	&__author
+		font-weight: bold
+		font-style: italic
+	&__text
+
+	&_current-user
+		text-align: right
+		justify-self: end
+		.chat-message__image
+			order: 2
+
+		.chat-message__text
+			order: 1
+.message-form
+	display: flex
+	flex-wrap: wrap
+	&>label, &>input
+		flex: 1 1 100%
+	&>label
+		display: inherit
+		justify-content: space-between
+		&>input, &>textarea
+			flex-basis: 91%
