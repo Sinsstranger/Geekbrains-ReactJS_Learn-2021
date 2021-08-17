@@ -14,11 +14,7 @@ const App = () => {
 		const author = event.target.querySelector('input[name="author"]').value;
 		const text = event.target.querySelector('textarea').value;
 		event.target.querySelector('textarea').value = "";
-		changeMessageList(messageList.push({author: author, text: text}));
-		/**
-		 * Не ясно от чего все валится, State меняется успешно
-		 */
-		console.log(messageList);
+		changeMessageList([...messageList, {author, text}]);
 	}
 	return (
 		<>
