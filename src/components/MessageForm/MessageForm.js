@@ -1,20 +1,22 @@
 import {useRef} from "react";
+import {Container, Button, TextField} from '@material-ui/core'
 
 const MessageForm = ({handleMessageSend, currentUser}) => {
 	const author = useRef(null);
 	const message = useRef(null);
 	const sendForm = () => {
 		handleMessageSend(author.current.value, message.current.value);
-		[author.current.value, message.current.value] = ['', '']
+		message.current.value = '';
+		message.current.focus();
 	}
 	return (
-		<form action="#" className="message-form" onSubmit={sendForm}>
-			<label htmlFor="">Ваше имя:<input type="text" name="author" ref={author} value={currentUser} disabled/></label>
-			<label htmlFor="">Ваше сообщение:
-				<textarea name="" id="" cols="30" rows="10" ref={message}></textarea>
-			</label>
-			<input type="submit" value="Send"/>
-		</form>
+		<Container>
+			<form action="#" className="message-form" onSubmit={sendForm} noValidate autoComplete="off">
+				<TextField variant="filled" margin="normal" fullWidth inputRef={author} value={currentUser} disabled/>
+				<TextField autoFocus="true" margin="normal" label="Ваше сообщение" variant="outlined" fullWidth inputRef={message}/>
+				<Button type='submit' fullWidth style={{backgroundColor: '#cfe8fc', color: 'black'}}>Send</Button>
+			</form>
+		</Container>
 	);
 }
 export default MessageForm;

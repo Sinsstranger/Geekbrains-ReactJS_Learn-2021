@@ -1,7 +1,9 @@
 import {useState, useCallback, useEffect} from "react";
 import uniqid from 'uniqid';
+import {Container} from '@material-ui/core';
 import MessageList from "./components/MessageList/MessageList.js";
-import MessageForm from "./components/MessageForm/MessageForm.js"
+import MessageForm from "./components/MessageForm/MessageForm.js";
+import {ChatList} from "./components/chatList";
 import "./assets/sass/main.sass";
 
 const App = () => {
@@ -31,8 +33,13 @@ const App = () => {
 				Чат
 			</header>
 			<main className="main">
-				<MessageList messageList={messageList} currentUser={currentUser}/>
-				<MessageForm handleMessageSend={handleMessageSend} currentUser={currentUser}/>
+				<Container>
+					<div className='chat'>
+						<MessageList messageList={messageList} currentUser={currentUser}/>
+						<MessageForm handleMessageSend={handleMessageSend} currentUser={currentUser}/>
+					</div>
+				</Container>
+				<ChatList/>
 			</main>
 			<footer className="footer">
 				It's Footer

@@ -18,7 +18,7 @@ body, #root
 .main
 	padding: 1em 0
 	display: grid
-	grid-template: 1fr auto/1fr
+	grid-template: 1fr auto/3fr 1fr
 
 .message-list
 	display: inherit
@@ -30,6 +30,11 @@ body, #root
 		margin-bottom: 0
 		display: inherit
 
+.chat
+	height: 100%
+	display: grid
+	grid-template: 1fr auto/1fr
+
 .chat-message
 	padding: 0 1em
 	grid-template: 1fr/minmax(40px, auto) 1fr
@@ -37,26 +42,33 @@ body, #root
 
 	&__image
 		border-radius: 50%
+
 	&__author
 		font-weight: bold
 		font-style: italic
+
 	&__text
 
 	&_current-user
 		text-align: right
 		justify-self: end
+
 		.chat-message__image
 			order: 2
 
 		.chat-message__text
 			order: 1
+
 .message-form
 	display: flex
 	flex-wrap: wrap
-	&>label, &>input
+
+	& > label, & > input
 		flex: 1 1 100%
-	&>label
+
+	& > label
 		display: inherit
 		justify-content: space-between
-		&>input, &>textarea
+
+		& > input, & > textarea
 			flex-basis: 91%
