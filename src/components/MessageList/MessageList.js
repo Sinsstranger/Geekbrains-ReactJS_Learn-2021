@@ -7,4 +7,4 @@ const MessageList = ({messageList, currentUser}) => {
 		</section>
 	);
 }
-export default MessageList;
+export {MessageList};
