@@ -1,51 +1,39 @@
-import {useState, useCallback, useEffect} from "react";
-import uniqid from 'uniqid';
-import {Container} from '@material-ui/core';
-import {MessageList} from "./components/MessageList/MessageList.js";
-import {MessageForm} from "./components/MessageForm/MessageForm.js";
-import {ChatList} from "./components/chatList";
-import "./assets/sass/main.sass";
+import React from 'react';
+import {Header} from "./components/header";
+import {Footer} from "./components/footer";
+import {Switch, Route, Redirect} from "react-router-dom";
+import './App.sass';
+import {ChatPage} from "./Layouts/ChatPage";
+import {ProfilePage} from "./Layouts/ProfilePage";
 
-const App = () => {
-	const currentUser = 'Anonimous';
-	const [messageList, setMessageList] = useState([
-		{id: uniqid(), author: `Sebrand`, text: `Hellow, are you Learning React Here?`},
-		{id: uniqid(), author: `Edward`, text: `Yes we are!`}
-	]);
-	const handleMessageSend = useCallback((author, text) => {
-		setMessageList([...messageList, {id: uniqid(), author, text}]);
-	}, [messageList]);
-	useEffect(() => {
-		const botChecking = async () => {
-			try {
-				if (messageList[messageList.length - 1].author !== 'Bot' && messageList[messageList.length - 1].author === 'Anonimous') {
-					let answerTimer = await setTimeout(() => setMessageList([...messageList, {id: uniqid(), author: "Bot", text: `You messsage on moderation Checking`}]), 1500);
-					return () => clearTimeout(answerTimer);
-				}
-			} catch (e) {
-				console.error(e);
-			}
-		}
-		botChecking().then();
-	}, [messageList]);
+function App() {
 	return (
-		<>
-			<header className="header">
-				Чат
-			</header>
+		<div className="wrapper">
+			<Header/>
 			<main className="main">
-				<Container>
-					<div className='chat'>
-						<MessageList messageList={messageList} currentUser={currentUser}/>
-						<MessageForm handleMessageSend={handleMessageSend} currentUser={currentUser}/>
-					</div>
-				</Container>
-				<ChatList/>
+				<Switch>
+					<Route path="/chats/:chatname">
+						<ChatPage/>
+					</Route>
+					<Route path="/chats">
+						<ChatPage onlyList/>
+					</Route>
+					<Route path="/profile">
+						<ProfilePage/>
+					</Route>
+					<Route exact path="/">
+						MAIN
+					</Route>
+					<Route path="/404">
+						404 NOT-FOUND
+					</Route>
+					<Route path="*">
+						<Redirect to="/404"/>
+					</Route>
+				</Switch>
 			</main>
-			<footer className="footer">
-				It's Footer
-			</footer>
-		</>
+			<Footer/>
+		</div>
 	);
 }
 
