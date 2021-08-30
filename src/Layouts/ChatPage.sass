@@ -2,6 +2,13 @@
 	display: grid
 	grid-template: 1fr/ 1fr 320px
 	grid-column-gap: 1em
+	min-height: 100%
+.chat-part
+	display: inherit
+	grid-template: minmax(auto, 70vh) auto /1fr
+	padding: 2em
+.chat-room
+	overflow-y: scroll
 .menu-part
 	display: grid
 	grid-auto-columns: 1fr
@@ -14,3 +21,6 @@
 		border: 1px solid
 		border-bottom-width: .5px
 		border-top-width: .5px
+.chat-form
+	display: grid
+	grid-auto-rows: 1fr
