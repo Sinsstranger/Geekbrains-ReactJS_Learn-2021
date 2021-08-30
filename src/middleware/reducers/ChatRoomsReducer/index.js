@@ -13,13 +13,12 @@ export const ChatRoomsReducer = (state = initialRoomsState, action) => {
 				...action.payload
 			]
 		case 'ADD_MESSAGE':
-			/**
-			 * Как тут грамотно и иммутабельно поменять state
-			 */
-			return [
-				...state,
-				Object.assign(state.find(room => room.link === action.chatname).messages, action.payload)
-			]
+			let messages = () => {
+				let result = JSON.parse(JSON.stringify(state));
+				result.find(room => room.link === action.chatname).messages.push(action.payload);
+				return result;
+			};
+			return messages();
 		default:
 			return state;
 	}
