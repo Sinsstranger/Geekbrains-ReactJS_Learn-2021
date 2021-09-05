@@ -1,0 +1,1 @@
+export const PROFILE_SELECTOR = state => state.profile;
