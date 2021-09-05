@@ -1,2 +1,0 @@
-export const ADD_CHAT_ROOM = 'CHAT::ADD_CHAT_ROOM';
-export const ADD_CHAT_MESSAGE = 'CHAT::ADD_CHAT_MESSAGE';

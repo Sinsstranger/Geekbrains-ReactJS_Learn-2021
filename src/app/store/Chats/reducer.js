@@ -1,20 +1,15 @@
-import {ADD_CHAT_ROOM, ADD_CHAT_MESSAGE} from './constants.js';
+import {ADD_CHAT_ROOM} from './constants.js';
 import uniqid from "uniqid";
 
 const initialState = [{
-	id: uniqid(`group_`),
+	id: uniqid(`chat_`),
 	name: `Общий чат`,
-	type: `group`,
-	messages: [
-		{author: `Vasya`, message: `Hello`}
-	]
+	slug: `general`,
 }];
 export const chatReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_CHAT_ROOM:
-			return state;
-		case ADD_CHAT_MESSAGE:
-			return state;
+			return [...state, action.payload];
 		default:
 			return state;
 	}

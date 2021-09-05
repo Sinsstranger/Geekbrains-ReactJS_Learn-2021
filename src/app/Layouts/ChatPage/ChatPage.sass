@@ -1,5 +1,21 @@
-.wrapper
-	min-width: 100vw
-	min-height: 100vh
+.chat-wrapper
 	display: grid
-	grid-template: 1fr/minmax(300px,350px) 1fr
+	grid-template: 1fr/minmax(auto, 300px) minmax(300px, auto)
+	background: #3D4554
+	color: #d7dde8
+	box-sizing: border-box
+	min-height: 100%
+
+.chat-controls
+	display: inherit
+	grid-template: minmax(0px, max-content) auto minmax(0px,max-content)/1fr
+	border: 1px solid #d7dde8
+	border-top: none
+	border-bottom: none
+
+.chat-content
+	display: inherit
+	grid-template: 1fr minmax(0px,max-content)/1fr
+	max-height: 89vh
+	&__messages
+			overflow-y: auto
