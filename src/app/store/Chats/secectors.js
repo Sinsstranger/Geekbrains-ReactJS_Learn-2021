@@ -1,1 +1,1 @@
-export const CHATS_SELECTOR = state => state.chats;
+export const chatsSelector = state => state.chats;

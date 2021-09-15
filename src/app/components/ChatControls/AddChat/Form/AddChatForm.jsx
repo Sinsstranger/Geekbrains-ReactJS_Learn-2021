@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import uniqid from "uniqid";
 import {slugify} from "transliter";
-import {CHATS_SELECTOR} from "../../../../store/Chats/secectors";
+import {chatsSelector} from "../../../../store/Chats/secectors";
 import {addChatRoom} from "../../../../store/Chats/actions";
 import './AddCahtForm.sass';
 
@@ -11,7 +11,7 @@ export const AddChatForm = (props) => {
 	const [chatName, setChatName] = useState('');
 	const dispatchChatRoom = useDispatch();
 	const chatUriPath = useHistory();
-	const allChats = useSelector(CHATS_SELECTOR);
+	const allChats = useSelector(chatsSelector);
 	const handleCreateChat = useCallback(() => {
 		let chatSlug = slugify(chatName, `-`);
 		if (allChats.findIndex(chat => chat.slug === chatSlug) !== -1) {

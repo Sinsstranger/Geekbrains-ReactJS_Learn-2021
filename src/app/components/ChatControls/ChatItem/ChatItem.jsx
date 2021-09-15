@@ -1,6 +1,13 @@
 import {Link} from "react-router-dom";
+import {removeChatRoom} from "../../../store/Chats/actions";
 import './ChatItem.sass';
+import {useDispatch} from "react-redux";
 
 export const ChatItem = ({id, chatSlug, chatName}) => {
-	return (<Link id={id} className='chat-controls__item' to={`/chats/${chatSlug}/`}>{chatName}</Link>);
+	const dispatch = useDispatch();
+	return (
+		<div className='chat-controls__item'><Link className="chat-controls__item--name" id={id} to={`/chats/${chatSlug}/`}>{chatName}</Link><span className="chat-controls__item--remove" onClick={(e) => {
+			dispatch(removeChatRoom(id));
+		}}>&#10060;</span></div>
+	);
 }

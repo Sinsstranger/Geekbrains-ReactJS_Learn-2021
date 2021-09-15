@@ -1,18 +1,17 @@
 import {useSelector} from "react-redux";
 import './ChatPage.sass';
-import {CHATS_SELECTOR} from "../../store/Chats/secectors";
+import {chatsSelector} from "../../store/Chats/secectors";
 import {Route, Switch} from "react-router-dom";
 import {AddChatForm, ProfileInfo, ChatItem} from "../../components/ChatControls";
-import {useMemo} from "react";
 import {Message, SendMessageForm} from "../../components/ChatContent";
-import {MESSAGES_SELECTOR} from "../../store/Messages/secectors";
+import {getMessages} from "../../store/Messages/secectors";
 
 export const ChatPage = (props) => {
-	const chats = useSelector(CHATS_SELECTOR);
-	const activeChatId = useMemo(() => {
-		return chats.find(chat => chat.slug === props.match.params.chatUrl)?.id || '';
-	}, [chats, props.match.params]);
-	const messages = useSelector(MESSAGES_SELECTOR).messagesList[activeChatId] || false;
+	const chats = useSelector(chatsSelector);
+	const activeChatId = useSelector((state, chatUrl = props.match.params.chatUrl) => {
+		return chats.find(chat => chat.slug === chatUrl)?.id || '';
+	});
+	const messages = useSelector(getMessages).messagesList[activeChatId] || false;
 	return (
 		<div className="chat-wrapper">
 			<div className="chat-controls">
@@ -26,9 +25,9 @@ export const ChatPage = (props) => {
 			</div>
 			<div className="chat-content" data-active-chat={activeChatId}>
 				<Switch>
-					<Route exact path={`/chats/:chatSlug/`}>
+					<Route exact strict path={`/chats/:chatSlug/`}>
 						<div className="chat-content__messages">
-							{messages && messages.map((message,index) => <Message key={`${activeChatId}_${index}`} author={message.author} text={message.text}/>)}
+							{messages && messages.map((message, index) => <Message key={`${activeChatId}_${index}`} author={message.author} text={message.text}/>)}
 						</div>
 						<SendMessageForm currentChat={activeChatId}/>
 					</Route>

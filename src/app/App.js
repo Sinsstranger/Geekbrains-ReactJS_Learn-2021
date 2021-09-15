@@ -1,11 +1,10 @@
-import React from 'react';
-import './App.sass';
 import {Route, Switch, Redirect, useLocation} from "react-router-dom";
 import {ChatPage} from './Layouts/ChatPage';
 import {IndexPage} from './Layouts/IndexPage';
 import {ProfilePage} from './Layouts/ProfilePage';
 import {Header} from "./components/Header/Header";
 import {Footer} from "./components/Footer/Footer";
+import './App.sass';
 
 const App = () => {
 	return (<div className="wrapper">

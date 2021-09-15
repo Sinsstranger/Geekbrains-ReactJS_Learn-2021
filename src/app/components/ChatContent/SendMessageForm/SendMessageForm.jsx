@@ -2,7 +2,7 @@ import {useCallback, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {PROFILE_SELECTOR} from "../../../store/Profile/secectors";
 import './SendMessageForm.sass';
-import {addUserMessage} from "../../../store/Messages/actions";
+import {addUserMessageWithBotAnswer} from "../../../store/Messages/actions";
 
 export const SendMessageForm = ({currentChat}) => {
 	const [chatMessage, setChatMessage] = useState('');
@@ -11,7 +11,7 @@ export const SendMessageForm = ({currentChat}) => {
 	const dispatch = useDispatch();
 	const handleSendMesssage = useCallback(() => {
 		if (currentChat && currentUser && chatMessage.toString().trim() !== '') {
-			dispatch(addUserMessage({currentChat, message: {author: currentUser.name, text: chatMessage}}));
+			dispatch(addUserMessageWithBotAnswer({currentChat, message: {author: currentUser.name, text: chatMessage}}));
 			setChatMessage('');
 			formName.current.focus();
 		}
