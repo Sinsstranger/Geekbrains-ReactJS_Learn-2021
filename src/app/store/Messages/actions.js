@@ -4,9 +4,9 @@ const addUserMessage = payload => {
 	return {type: ADD_MESSAGE, payload}
 
 }
-const addUserMessageWithBotAnswer = payload => (dispatch) => {
-	dispatch(addUserMessage(payload));
-	dispatch(addUserMessage({currentChat: payload.currentChat, message: {author: `Bot`, text: `Your message on moderation`}}));
+const addUserMessageWithBotAnswer = payload => async (dispatch) => {
+	await dispatch(addUserMessage(payload));
+	await setTimeout(() => dispatch(addUserMessage({currentChat: payload.currentChat, message: {author: `Bot`, text: `Your message on moderation`}})), 500)
 }
 const removeAllMessages = payload => {
 	return {type: REMOVE_ALL_MESSAGES, payload}
