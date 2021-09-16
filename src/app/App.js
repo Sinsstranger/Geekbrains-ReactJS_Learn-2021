@@ -1,6 +1,6 @@
 import {Route, Switch, Redirect, useLocation} from "react-router-dom";
 import {ChatPage} from './Layouts/ChatPage';
-import {IndexPage} from './Layouts/IndexPage';
+import {IndexPage} from './Layouts/PostsPage';
 import {ProfilePage} from './Layouts/ProfilePage';
 import {Header} from "./components/Header/Header";
 import {Footer} from "./components/Footer/Footer";
