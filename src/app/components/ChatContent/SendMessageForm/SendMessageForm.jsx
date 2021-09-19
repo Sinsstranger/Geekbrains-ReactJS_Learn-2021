@@ -1,10 +1,11 @@
+import React from "react";
 import {useCallback, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {PROFILE_SELECTOR} from "../../../store/Profile/secectors";
 import './SendMessageForm.sass';
 import {addUserMessageWithBotAnswer} from "../../../store/Messages/actions";
 
-export const SendMessageForm = ({currentChat}) => {
+export const SendMessageForm = React.memo(({currentChat}) => {
 	const [chatMessage, setChatMessage] = useState('');
 	const currentUser = useSelector(PROFILE_SELECTOR);
 	const formName = useRef(null);
@@ -22,4 +23,4 @@ export const SendMessageForm = ({currentChat}) => {
 			<button className="chat-message-form__send" onClick={handleSendMesssage}>Отправить</button>
 		</form>
 	);
-}
+});

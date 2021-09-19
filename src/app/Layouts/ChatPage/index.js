@@ -8,9 +8,7 @@ import {getMessages} from "../../store/Messages/secectors";
 
 export const ChatPage = (props) => {
 	const chats = useSelector(chatsSelector);
-	const activeChatId = useSelector((state, chatUrl = props.match.params.chatUrl) => {
-		return chats.find(chat => chat.slug === chatUrl)?.id || '';
-	});
+	const activeChatId = chats.find(chat => chat.slug === props.match.params["chatUrl"])?.id || '';
 	const messages = useSelector(getMessages).messagesList[activeChatId] || false;
 	return (
 		<div className="chat-wrapper">

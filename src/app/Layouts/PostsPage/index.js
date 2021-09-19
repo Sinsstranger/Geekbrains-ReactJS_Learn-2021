@@ -5,7 +5,7 @@ import {getPosts} from "../../store/Posts/selectors";
 import {useCallback, useEffect} from "react";
 import {PostItem} from "../../components/Posts";
 
-export const IndexPage = (props) => {
+export const PostsPage = (props) => {
 	const {error, loading, items} = useSelector(getPosts);
 	const dispatch = useDispatch();
 	const handleRefreshPosts = useCallback(() => {
