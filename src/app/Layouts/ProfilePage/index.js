@@ -1,8 +1,8 @@
 import {useState, useCallback} from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {PROFILE_SELECTOR} from "../../store/ProfilePage/secectors";
-import {CHANGE_USER_PROFILE} from "../../store/ProfilePage/constants";
+import {PROFILE_SELECTOR} from "../../store/Profile/secectors";
 import './ProfilePage.sass';
+import {changeUserProfile} from "../../store/Profile/actions";
 
 export const ProfilePage = (props) => {
 	const [profile, dispatch] = [useSelector(PROFILE_SELECTOR), useDispatch()];
@@ -21,7 +21,7 @@ export const ProfilePage = (props) => {
 				photo: `https://sun6-20.userapi.com/s/v1/ig2/Ci01AhXW7_a7lUdlHrT_NYdudrAWjYDcTV0gU2tE3MkZNtb-8m51lO2lW9GDTTDha0OeQWdJPNjDoe7TXRcHHLFi.jpg?size=400x480&quality=96&crop=0,0,500,600&ava=1` || `https://via.placeholder.com/150`
 			}
 			if (JSON.stringify(prepare) !== JSON.stringify(profile)) {
-				dispatch({type: CHANGE_USER_PROFILE, payload: prepare});
+				dispatch(changeUserProfile(prepare));
 			}
 		}
 	},[dispatch, editMode, formAge, formDescription, formName, profile]);

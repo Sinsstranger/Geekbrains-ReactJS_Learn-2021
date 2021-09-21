@@ -1,0 +1,11 @@
+.posts
+	display: grid
+	grid-gap: 2em
+	grid-template: 1fr/repeat(auto-fit, minmax(300px,1fr))
+	grid-auto-rows: minmax(2rem,1fr)
+	grid-auto-columns: minmax(300px,1fr)
+	padding: 2em
+.post-item
+	text-align: justify
+	&__title
+		font-weight: bold
